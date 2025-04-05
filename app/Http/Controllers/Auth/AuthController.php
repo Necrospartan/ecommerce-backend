@@ -56,16 +56,6 @@ class AuthController extends Controller
      *                      example="Nombre"
      *                  ),
      *                  @OA\Property(
-     *                      property="last_name",
-     *                      type="string",
-     *                      example="Apellido"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="username",
-     *                      type="string",
-     *                      example="Usuario"
-     *                  ),
-     *                  @OA\Property(
      *                      property="email",
      *                      type="string",
      *                      example="prueba@example.com"
@@ -82,11 +72,6 @@ class AuthController extends Controller
      *                          property="token_type",
      *                          type="string",
      *                          example="bearer"
-     *                      ),
-     *                      @OA\Property(
-     *                          property="expires_in",
-     *                          type="number",
-     *                          example=3600
      *                      )
      *                  )
      *              ),
@@ -120,14 +105,6 @@ class AuthController extends Controller
      *              @OA\Property(
      *                  property="errors",
      *                  type="object",
-     *                  @OA\Property(
-     *                      property="usuario",
-     *                      type="array",
-     *                      @OA\Items(
-     *                          type="string",
-     *                          example="El usuario es obligatorio si no se proporciona un correo electrónico."
-     *                      )
-     *                  ),
      *                  @OA\Property(
      *                      property="email",
      *                      type="array",
@@ -241,16 +218,6 @@ class AuthController extends Controller
      *                      example="Nombre"
      *                  ),
      *                  @OA\Property(
-     *                      property="last_name",
-     *                      type="string",
-     *                      example="Apellido"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="username",
-     *                      type="string",
-     *                      example="Usuario"
-     *                  ),
-     *                  @OA\Property(
      *                      property="email",
      *                      type="string",
      *                      example="prueba@example.com"
@@ -316,11 +283,6 @@ class AuthController extends Controller
      *                      property="token_type",
      *                      type="string",
      *                      example="bearer"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="expires_in",
-     *                      type="number",
-     *                      example=3600
      *                  )
      *              ),
      *              @OA\Property(
