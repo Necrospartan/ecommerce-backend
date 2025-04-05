@@ -151,7 +151,7 @@ class AuthController extends Controller
      *      description="Este endpoint permite cerrar la sesión del usuario actual.",
      *      operationId="logout",
      *      tags={"Auth"},
-     *      security={{"jwt": {}}},
+     *      security={{"sanctum": {}}},
      *      @OA\Response(
      *          response=200,
      *          description="Sesión cerrada exitosamente",
@@ -199,7 +199,7 @@ class AuthController extends Controller
      *      description="Este endpoint permite obtener información del usuario actual.",
      *      operationId="checkAuth",
      *      tags={"Auth"},
-     *      security={{"jwt": {}}},
+     *      security={{"sanctum": {}}},
      *      @OA\Response(
      *          response=200,
      *          description="Información del usuario obtenida exitosamente",
@@ -266,7 +266,7 @@ class AuthController extends Controller
      *      description="Este endpoint permite refrescar el token de acceso.",
      *      operationId="refresh",
      *      tags={"Auth"},
-     *      security={{"jwt": {}}},
+     *      security={{"sanctum": {}}},
      *      @OA\Response(
      *          response=200,
      *          description="Token de acceso refrescado exitosamente",

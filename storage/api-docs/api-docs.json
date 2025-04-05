@@ -230,7 +230,7 @@
                 },
                 "security": [
                     {
-                        "jwt": []
+                        "sanctum": []
                     }
                 ]
             }
@@ -259,14 +259,6 @@
                                                 "name": {
                                                     "type": "string",
                                                     "example": "Nombre"
-                                                },
-                                                "last_name": {
-                                                    "type": "string",
-                                                    "example": "Apellido"
-                                                },
-                                                "username": {
-                                                    "type": "string",
-                                                    "example": "Usuario"
                                                 },
                                                 "email": {
                                                     "type": "string",
@@ -320,7 +312,7 @@
                 },
                 "security": [
                     {
-                        "jwt": []
+                        "sanctum": []
                     }
                 ]
             }
@@ -349,10 +341,6 @@
                                                 "token_type": {
                                                     "type": "string",
                                                     "example": "bearer"
-                                                },
-                                                "expires_in": {
-                                                    "type": "number",
-                                                    "example": 3600
                                                 }
                                             },
                                             "type": "object"
@@ -402,7 +390,1201 @@
                 },
                 "security": [
                     {
-                        "jwt": []
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/media/getmedia": {
+            "get": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Obtener todos los Medios",
+                "description": "Este EndPoint regresa todos los Medios.",
+                "operationId": "allMedia",
+                "responses": {
+                    "200": {
+                        "description": "Todos los Medios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "phone_number": {
+                                                        "type": "string",
+                                                        "example": "1234567899"
+                                                    },
+                                                    "skype": {
+                                                        "type": "string",
+                                                        "example": "example.skype"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2024-12-12"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2024-12-12"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": "null"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Medios obtenidos correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error del servidor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/media/getMedia/{id}": {
+            "get": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Obtener un Medio",
+                "description": "Este EndPoint regresa un Medio por su ID.",
+                "operationId": "getmedia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del Medio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Medio obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "phone_number": {
+                                                    "type": "string",
+                                                    "example": "1234567899"
+                                                },
+                                                "skype": {
+                                                    "type": "string",
+                                                    "example": "example.skype"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-12-12"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-12-12"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": "null"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Medio obtenido correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Medio no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Medio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error del servidor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/media/addMedia": {
+            "post": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Crea un nuevo Medio.",
+                "description": "Este endpoint permite crear un nuevo Medio.",
+                "operationId": "addMedia",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "location",
+                                    "type",
+                                    "image",
+                                    "price_per_day"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "prueba"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "morelia"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "anuncio"
+                                    },
+                                    "image": {
+                                        "description": "Imagen a subir",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "price_per_day": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "19.99"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Medio obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Medio creado correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Datos de entrada inválidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error de validación."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "El nombre es obligatorio."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/media/updateMedia/{id}": {
+            "put": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Actualiza un Medio.",
+                "description": "Este endpoint permite actualizar al Medio.",
+                "operationId": "updateMedia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del Medio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "prueba"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "morelia"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "anuncio"
+                                    },
+                                    "image": {
+                                        "description": "Imagen a subir",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "price_per_day": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "19.99"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Medio actualizado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Medio actualizado correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Datos de entrada inválidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error de validación."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "El nombre es obligatorio."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/media/deleteMedia/{id}": {
+            "delete": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Eliminar medio.",
+                "description": "Este endpoint permite eliminar al medio.",
+                "operationId": "deleteMedia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del Medio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Medio eliminado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Medio eliminado correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/getreservation": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Obtener todos las reservaciones",
+                "description": "Este EndPoint regresa todos las reservaciones.",
+                "operationId": "allreservation",
+                "responses": {
+                    "200": {
+                        "description": "Todos las reservaciones",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "phone_number": {
+                                                        "type": "string",
+                                                        "example": "1234567899"
+                                                    },
+                                                    "skype": {
+                                                        "type": "string",
+                                                        "example": "example.skype"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2024-12-12"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2024-12-12"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": "null"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservaciones obtenidas correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error del servidor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/getReservation/{id}": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Obtener una reservacion",
+                "description": "Este EndPoint regresa una reservacion por su ID.",
+                "operationId": "getreservation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la reservacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reservacion obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "phone_number": {
+                                                    "type": "string",
+                                                    "example": "1234567899"
+                                                },
+                                                "skype": {
+                                                    "type": "string",
+                                                    "example": "example.skype"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-12-12"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-12-12"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": "null"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservacion obtenido correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Medio no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservacion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error del servidor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/addReservation": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Crea una nueva Reservacion.",
+                "description": "Este endpoint permite crear una nueva Reservacion.",
+                "operationId": "addReservation",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "media_id",
+                                    "start_date",
+                                    "end_date",
+                                    "total_price"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "media_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "start_date": {
+                                        "type": "string",
+                                        "example": "2025-01-01"
+                                    },
+                                    "end_date": {
+                                        "type": "string",
+                                        "example": "2025-01-01"
+                                    },
+                                    "total_price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "99.99"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reservacion obtenida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservacion creada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Datos de entrada inválidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error de validación."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "user_id": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "El id del usuario tiene que ser un numero."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/updateReservation/{id}": {
+            "put": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Actualiza una Reservacion.",
+                "description": "Este endpoint permite actualizar la Reservacion.",
+                "operationId": "updateReservation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la Reservacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "media_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "start_date": {
+                                        "type": "string",
+                                        "example": "2025-01-01"
+                                    },
+                                    "end_date": {
+                                        "type": "string",
+                                        "example": "2025-01-01"
+                                    },
+                                    "total_price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "99.99"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reservacion actualizada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservacion actualizada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Datos de entrada inválidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error de validación."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "user_id": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "El id del usuario tiene que ser un numero."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/deleteReservacion/{id}": {
+            "delete": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Eliminar la reservacion.",
+                "description": "Este endpoint permite eliminar la reservacion.",
+                "operationId": "deleteReservation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la reservacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reservacion eliminada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservacion eliminado correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
                     }
                 ]
             }
@@ -421,6 +1603,14 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Media",
+            "description": "Media"
+        },
+        {
+            "name": "Reservations",
+            "description": "Reservations"
         }
     ]
 }
