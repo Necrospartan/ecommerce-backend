@@ -16,8 +16,8 @@ class CheckRole
     public function handle(Request $request, Closure $next, string $role): Response
     {
         try{
-
-            if (auth()->user()->role !== $role) {
+            $rolesArray = explode('|', $role);
+            if (!in_array(auth()->user()->role, $rolesArray)) {
                 return response()->json(['message' => 'Acceso denegado.'], 403);
             }
             return $next($request);

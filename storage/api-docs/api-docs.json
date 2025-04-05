@@ -395,7 +395,7 @@
                 ]
             }
         },
-        "/api/media/getmedia": {
+        "/api/media/getMedia": {
             "get": {
                 "tags": [
                     "Media"
@@ -962,6 +962,72 @@
                                         "message": {
                                             "type": "string",
                                             "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lo sentimos, ha ocurrido un error interno en el servidor."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/media/getImageMedia/{id}": {
+            "get": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Obtener imagen del medio.",
+                "description": "Este endpoint permite obtener la imagen del medio.",
+                "operationId": "getImageMedia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del Medio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Imagen obtenida correctamente.",
+                        "content": {
+                            "image/*": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Imagen no encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Imagen no encontrada."
                                         }
                                     },
                                     "type": "object"

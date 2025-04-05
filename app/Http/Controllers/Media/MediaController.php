@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Media;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Media\MediaStoreRequest;
 use App\Http\Requests\Media\MediaUpdateRequest;
-use Illuminate\Http\Request;
 use App\Services\Media\MediaService;
 
 class MediaController extends Controller
@@ -19,7 +18,7 @@ class MediaController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/media/getmedia",
+     *      path="/api/media/getMedia",
      *      summary="Obtener todos los Medios",
      *      description="Este EndPoint regresa todos los Medios.",
      *      operationId="allMedia",
@@ -535,5 +534,58 @@ class MediaController extends Controller
     public function destroy($id)
     {
         return responseHelper($this->mediaService->deleteMedia($id));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/media/getImageMedia/{id}",
+     *      summary="Obtener imagen del medio.",
+     *      description="Este endpoint permite obtener la imagen del medio.",
+     *      operationId="getImageMedia",
+     *      tags={"Media"},
+     *      security={{"sanctum": {}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="ID del Medio",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Imagen obtenida correctamente.",
+     *          @OA\MediaType(
+     *              mediaType="image/*"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Imagen no encontrada.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Imagen no encontrada."
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response="500",
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Lo sentimos, ha ocurrido un error interno en el servidor."
+     *              ),
+     *          ),
+     *      )
+     *  )
+     */
+    public function getImageMedia($id)
+    {
+        return $this->mediaService->getImageMedia($id);
     }
 }
