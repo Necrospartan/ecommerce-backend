@@ -29,4 +29,9 @@ class Media extends Model
     public function reservations() : HasMany {
         return $this->hasMany(Reservation::class);
     }
+
+    public function availabilities(): HasMany
+    {
+        return $this->hasMany(Availability::class);
+    }
 }
