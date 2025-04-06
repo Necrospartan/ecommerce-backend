@@ -2,12 +2,15 @@
 
 namespace App\Services\Media;
 
+use App\Http\Resources\Media\MediaCollection;
+use App\Http\Resources\Media\MediaResource;
 use App\Repositories\Eloquent\Media\MediaRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Metadata\MetadataCollection;
 
 class MediaService
 {
@@ -29,6 +32,7 @@ class MediaService
                     'status' => JsonResponse::HTTP_NOT_FOUND
                 ];
             }
+            new MediaCollection($media);
             return [
                 'data' => $media,
                 'message' => 'Medios, obtenidos correctamente.',
@@ -49,7 +53,7 @@ class MediaService
             $media = $this->mediaRepository->getById($id);
             if ($media) {
                 return [
-                    'data' => $media,
+                    'data' => new MediaResource($media),
                     'message' => 'Medio obtenido correctamente.',
                     'status' => JsonResponse::HTTP_OK
                 ];

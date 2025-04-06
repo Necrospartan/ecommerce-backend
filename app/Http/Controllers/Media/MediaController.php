@@ -39,31 +39,47 @@ class MediaController extends Controller
      *                          example="1"
      *                      ),
      *                      @OA\Property(
-     *                          property="phone_number",
+     *                          property="name",
      *                          type="string",
-     *                          example="1234567899"
+     *                          example="prueba"
      *                      ),
      *                      @OA\Property(
-     *                          property="skype",
+     *                          property="location",
      *                          type="string",
-     *                          example="example.skype"
+     *                          example="México"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="type",
+     *                          type="string",
+     *                          example="anuncio"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="image",
+     *                          type="string",
+     *                          example="http://localhost:8017/api/media/getImageMedia/1"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="price_per_day",
+     *                          type="number",
+     *                          format="float",
+     *                          example="19.99"
      *                      ),
      *                      @OA\Property(
      *                          property="created_at",
      *                          type="string",
-     *                          example="2024-12-12"
+     *                          example="2025-12-12"
      *                      ),
      *                      @OA\Property(
      *                          property="updated_at",
      *                          type="string",
-     *                          example="2024-12-12"
+     *                          example="2025-12-12"
      *                      ),
      *                      @OA\Property(
      *                          property="deleted_at",
      *                          type="string",
      *                          example="null"
      *                      ),
-     *                  )
+     *                  ),
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -143,24 +159,41 @@ class MediaController extends Controller
      *                      example="1"
      *                  ),
      *                  @OA\Property(
-     *                      property="phone_number",
+     *                      property="name",
      *                      type="string",
-     *                      example="1234567899"
+     *                      example="prueba"
      *                  ),
      *                  @OA\Property(
-     *                      property="skype",
+     *                      property="location",
      *                      type="string",
-     *                      example="example.skype"
+     *                      example="México"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="type",
+     *                      type="string",
+     *                      example="anuncio"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="image",
+     *                      type="string",
+     *                      example="http://localhost:8017/api/media/getImageMedia/1"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="price_per_day",
+     *                      type="number",
+     *                      format="float",
+     *                      example="19.99"
+     *
      *                  ),
      *                  @OA\Property(
      *                      property="created_at",
      *                      type="string",
-     *                      example="2024-12-12"
+     *                      example="2025-12-12"
      *                  ),
      *                  @OA\Property(
      *                      property="updated_at",
      *                      type="string",
-     *                      example="2024-12-12"
+     *                      example="2025-12-12"
      *                  ),
      *                  @OA\Property(
      *                      property="deleted_at",

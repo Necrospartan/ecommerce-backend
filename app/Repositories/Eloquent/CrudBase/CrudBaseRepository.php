@@ -5,6 +5,7 @@ use App\Repositories\Contracts\CrudBase\CrudBaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CrudBaseRepository implements CrudBaseRepositoryInterface
 {
@@ -15,17 +16,17 @@ class CrudBaseRepository implements CrudBaseRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAll(bool $trashed = false) : Collection
+    public function getAll(bool $trashed = false, int $perPage = 10) : LengthAwarePaginator
     {
         try {
             if ($trashed) {
-                return $this->model->withTrashed()->get();
+                return $this->model->withTrashed()->paginate($perPage);
             } else {
-                return $this->model->all();
+                return $this->model->paginate($perPage);
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return collect();
+            return new LengthAwarePaginator(collect(), 0, $perPage);
         }
     }
 

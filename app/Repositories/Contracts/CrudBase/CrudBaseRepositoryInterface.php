@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Contracts\CrudBase;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface CrudBaseRepositoryInterface
 {
-    public function getAll(bool $trashed) : Collection;
+    public function getAll(bool $trashed, int $perPage) : LengthAwarePaginator;
     public function getById(int $id) : ?Model;
     public function create(array $data) : ?Model;
     public function update(int $id, array $data) : ?Model;
