@@ -23,6 +23,8 @@ Route::controller(MediaController::class)->group(function (){
         Route::delete('/deleteMedia/{id}', 'destroy')->name('deleteMedia')->middleware('checkRole:Admin');
         //Image
         Route::get('/getImageMedia/{id}', 'getImageMedia')->name('getImageMedia')->withoutMiddleware(['auth:sanctum']);
+        //Available
+        Route::get('/getReservedDays/{id}', 'getReservedDays')->name('getAvailableMedia')->withoutMiddleware(['auth:sanctum']);
     });
 });
 

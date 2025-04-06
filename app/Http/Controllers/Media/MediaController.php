@@ -621,4 +621,69 @@ class MediaController extends Controller
     {
         return $this->mediaService->getImageMedia($id);
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/media/getReservedDays/{id}",
+     *      summary="Obtener los días reservados del medio.",
+     *      description="Este endpoint permite obtener los días reservados del medio.",
+     *      operationId="getReservedDays",
+     *      tags={"Media"},
+     *      security={{"sanctum": {}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="ID del Medio",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Días reservados obtenidos correctamente.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Días reservados obtenidos correctamente."
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(
+     *                      type="string",
+     *                      example="2024-04-01"
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Medio no encontrado.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Medio no encontrado."
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response="500",
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Lo sentimos, ha ocurrido un error interno en el servidor."
+     *              ),
+     *          ),
+     *      )
+     *  )
+     */
+    public function getReservedDays($id)
+    {
+        return responseHelper($this->mediaService->getReservedDays($id));
+    }
 }

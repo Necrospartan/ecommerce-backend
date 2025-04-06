@@ -5,6 +5,7 @@ namespace App\Services\Media;
 use App\Http\Resources\Media\MediaCollection;
 use App\Http\Resources\Media\MediaResource;
 use App\Repositories\Eloquent\Media\MediaRepository;
+use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -193,6 +194,36 @@ class MediaService
                 'message' => 'Lo sentimos, ha ocurrido un error interno en el servidor.',
                 'status' => JsonResponse::HTTP_INTERNAL_SERVER_ERROR
             ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getReservedDays($id)
+    {
+        try {
+            $media = $this->mediaRepository->getById($id);
+            if (!$media) {
+                return [
+                    'message' => 'Medio no encontrado.',
+                    'status' => JsonResponse::HTTP_NOT_FOUND
+                ];
+            }
+
+            $today = Carbon::now(config('app.timezone'))->toDateString();
+
+            $reservedDays = $media->availabilities()
+                ->where('reserved_date', '>=', $today)
+                ->pluck('reserved_date');
+            return [
+                'data' => $reservedDays,
+                'message' => 'Días reservados futuros obtenidos correctamente.',
+                'status' => JsonResponse::HTTP_OK
+            ];
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return [
+                'message' => 'Error al actualizar el medio.',
+                'status' => JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            ];
         }
     }
 }
