@@ -12,6 +12,7 @@ class Availability extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'reservation_id',
         'media_id',
         'reserved_date'
     ];
@@ -19,5 +20,10 @@ class Availability extends Model
     public function media(): BelongsTo
     {
         return $this->belongsTo(Media::class);
+    }
+
+    public function reservation(): BelongsTo
+    {
+        return $this->belongsTo(Reservation::class);
     }
 }

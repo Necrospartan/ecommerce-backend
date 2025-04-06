@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('reservation_id')->references('id')->on('reservations');
             $table->foreignId('media_id')->references('id')->on('media');
             $table->date('reserved_date');
             $table->timestamps();

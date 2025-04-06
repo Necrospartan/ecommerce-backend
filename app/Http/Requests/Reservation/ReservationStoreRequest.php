@@ -22,7 +22,6 @@ class ReservationStoreRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'integer|exists:users,id',
             'media_id' => 'integer|exists:media,id',
             'start_date' => 'date|after:today',
             'end_date' => 'date|after_or_equal:start_date',
@@ -33,8 +32,6 @@ class ReservationStoreRequest extends BaseFormRequest
     public function messages(): array
     {
         return [
-            'user_id.integer' => 'El id del usuario debe ser un número entero.',
-            'user_id.exists' => 'El id del usuario no existe.',
             'media_id.integer' => 'El id de la media debe ser un número entero.',
             'media_id.exists' => 'El id de la media no existe.',
             'start_date.date' => 'La fecha de inicio debe ser una fecha válida.',

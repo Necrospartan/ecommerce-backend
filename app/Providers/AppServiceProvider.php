@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\Eloquent\CrudBase\CrudBaseRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        //Observers
+        \App\Models\Reservation::observe(\App\Observers\Reservation\ReservationObserver::class);
         //Services
         $this->app->singleton(\App\Services\Auth\AuthService::class,
         \App\Services\Auth\AuthService::class);

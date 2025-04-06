@@ -18,7 +18,7 @@ class ReservationController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/reservation/getreservation",
+     *      path="/api/reservation/getReservation",
      *      summary="Obtener todos las reservaciones",
      *      description="Este EndPoint regresa todos las reservaciones.",
      *      operationId="allreservation",
@@ -39,14 +39,30 @@ class ReservationController extends Controller
      *                          example="1"
      *                      ),
      *                      @OA\Property(
-     *                          property="phone_number",
-     *                          type="string",
-     *                          example="1234567899"
+     *                          property="user_id",
+     *                          type="integer",
+     *                          example="1"
      *                      ),
      *                      @OA\Property(
-     *                          property="skype",
+     *                          property="media_id",
+     *                          type="integer",
+     *                          example="1"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="start_date",
      *                          type="string",
-     *                          example="example.skype"
+     *                          example="2025-06-01"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="end_date",
+     *                          type="string",
+     *                          example="2025-06-01"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="total_price",
+     *                          type="number",
+     *                          format="float",
+     *                          example="99.99"
      *                      ),
      *                      @OA\Property(
      *                          property="created_at",
@@ -143,14 +159,30 @@ class ReservationController extends Controller
      *                      example="1"
      *                  ),
      *                  @OA\Property(
-     *                      property="phone_number",
-     *                      type="string",
-     *                      example="1234567899"
+     *                      property="user_id",
+     *                      type="integer",
+     *                      example="1"
      *                  ),
      *                  @OA\Property(
-     *                      property="skype",
+     *                      property="media_id",
+     *                      type="integer",
+     *                      example="1"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="start_date",
      *                      type="string",
-     *                      example="example.skype"
+     *                      example="2025-06-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="end_date",
+     *                      type="string",
+     *                      example="2025-06-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="total_price",
+     *                      type="number",
+     *                      format="float",
+     *                      example="99.99"
      *                  ),
      *                  @OA\Property(
      *                      property="created_at",
@@ -245,17 +277,11 @@ class ReservationController extends Controller
      *          required=true,
      *          @OA\JsonContent(
      *              required={
-     *                  "user_id",
      *                  "media_id",
      *                  "start_date",
      *                  "end_date",
      *                  "total_price"
      *              },
-     *              @OA\Property(
-     *                  property="user_id",
-     *                  type="integer",
-     *                  example="1"
-     *              ),
      *              @OA\Property(
      *                  property="media_id",
      *                  type="integer",
@@ -368,11 +394,6 @@ class ReservationController extends Controller
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(
-     *              @OA\Property(
-     *                  property="user_id",
-     *                  type="integer",
-     *                  example="1"
-     *              ),
      *              @OA\Property(
      *                  property="media_id",
      *                  type="integer",
