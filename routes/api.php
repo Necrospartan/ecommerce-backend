@@ -28,10 +28,10 @@ Route::controller(MediaController::class)->group(function (){
 
 Route::controller(ReservationController::class)->group(function (){
     Route::middleware(['auth:sanctum'])->prefix('reservation')->group(function (){
-        Route::get('/getReservation', 'index')->name('getReservation');
-        Route::get('/getReservation/{id}', 'show')->name('getReservation');
-        Route::post('/addReservation', 'store')->name('addReservation');
-        Route::put('/updateReservation/{id}', 'update')->name('updateReservation');
-        Route::delete('/deleteReservation/{id}', 'destroy')->name('deleteReservation');
+        Route::get('/getReservation', 'index')->name('getReservation')->middleware('checkRole:Admin|Cliente');
+        Route::get('/getReservation/{id}', 'show')->name('getReservation')->middleware('checkRole:Admin|Cliente');
+        Route::post('/addReservation', 'store')->name('addReservation')->middleware('checkRole:Admin|Cliente');
+        Route::put('/updateReservation/{id}', 'update')->name('updateReservation')->middleware('checkRole:Admin');
+        Route::delete('/deleteReservation/{id}', 'destroy')->name('deleteReservation')->middleware('checkRole:Admin');
     });
 });

@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use PHPUnit\Metadata\MetadataCollection;
 
 class MediaService
 {
@@ -24,7 +23,7 @@ class MediaService
     public function getAllMedia(bool $trashed = false) : array
     {
         try {
-            $media = $this->mediaRepository->getAll($trashed);
+            $media = $this->mediaRepository->getAll($trashed, 10);
             if ($media->isEmpty()) {
                 return [
                     'data' => [],

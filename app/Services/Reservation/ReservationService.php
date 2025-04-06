@@ -19,7 +19,7 @@ class ReservationService
     public function getAllReservation(bool $trashed = false) : array
     {
         try {
-            $reservation = $this->reservationRepository->getAll($trashed);
+            $reservation = $this->reservationRepository->getAll($trashed, 10);
             if ($reservation->isEmpty()) {
                 return [
                     'data' => [],
