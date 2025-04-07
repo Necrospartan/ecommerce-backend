@@ -20,7 +20,7 @@ class MediaResource extends JsonResource
             'name' => $this->name,
             'location' => $this->location,
             'type' => $this->type,
-            'image' => $this->image ? URL::route('getImageMedia', ['id' => $this->id]) : null,
+            'image' => URL::route('getImageMedia', ['id' => $this->id]),
             'price_per_day' => $this->price_per_day,
             'created_at' => $this->created_at ? $this->created_at->toDateString() : null,
             'updated_at' => $this->updated_at ? $this->updated_at->toDateString() : null,

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('location');
             $table->string('type');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->decimal('price_per_day', 8, 2);
             $table->timestamps();
             $table->softDeletes();

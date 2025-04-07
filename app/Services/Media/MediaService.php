@@ -185,6 +185,17 @@ class MediaService
                     return response()->json(['message' => 'La imagen no se encontró en el storage.'], JsonResponse::HTTP_NOT_FOUND);
                 }
             } else {
+                if (!$media->image) {
+                    $defaultImagePath = public_path('PruebaTecnica.png');
+                    if (file_exists($defaultImagePath)) {
+                        $imageContent = file_get_contents($defaultImagePath);
+                        $mimeType = mime_content_type($defaultImagePath);
+
+                        return new Response($imageContent, 200, ['Content-Type' => $mimeType]);
+                    } else {
+                        return response()->json(['message' => 'Imagen por defecto no encontrada.'], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+                    }
+                }
                 return response()->json([
                     'message' => 'Medio o imagen no encontrados.'], JsonResponse::HTTP_NOT_FOUND);
             }
