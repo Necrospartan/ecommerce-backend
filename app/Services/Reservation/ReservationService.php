@@ -190,7 +190,7 @@ class ReservationService
 
             //valida que el total de lo pagado corresponda con los dias reservados
             $media = $this->mediaRepository->getById($data['media_id']);
-            $totalPrice = $media->price_per_day * count($reservedDays);
+            $totalPrice = bcmul($media->price_per_day, count($reservedDays), 2);
             if ($totalPrice != $data['total_price']) {
                 return [
                     'message' => 'El total de lo pagado no corresponde con los dias reservados.',

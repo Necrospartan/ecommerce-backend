@@ -17,7 +17,8 @@ class ReservationResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'media_id' => $this->room_id,
+            'media_id' => $this->media_id,
+            'total_price' => $this->total_price,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d') : null,

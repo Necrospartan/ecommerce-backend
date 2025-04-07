@@ -22,10 +22,10 @@ class ReservationStoreRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'media_id' => 'integer|exists:media,id',
-            'start_date' => 'date|after:today',
-            'end_date' => 'date|after_or_equal:start_date',
-            'total_price' => 'numeric|min:0',
+            'media_id' => 'required|integer|exists:media,id',
+            'start_date' => 'required|date|after:today',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'total_price' => 'required|numeric|min:0',
         ];
     }
 
