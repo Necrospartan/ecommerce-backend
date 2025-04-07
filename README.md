@@ -118,3 +118,19 @@ php artisan serve
 ```
 
 Sin embargo, si estás utilizando un contenedor Docker, **no es necesario correr el servidor manualmente**. El contenedor ya está configurado para ejecutar el proyecto automáticamente cuando esté en funcionamiento.
+
+### Usuarios por defecto para utilizar el API:
+
+- `Administrador@example.org`, usuario con el rol Adimistrador, que puede registrar Medios.
+
+- `Cliente1@example.org`, usuario con el rol de Cliente, que puede registrar hacer reservaciones.
+
+- `Cliente2@example.org`, usuario con el rol de Cliente, que puede registrar hacer reservaciones.
+
+La contraseña por defecto para los 3 usuarios es: **Password#1**
+
+Ya existe `Medios` y `Reservaciones` creadas asociados a los dos usuariso anteriores.
+
+La documentacion fue creada usando `Swagger` y esta se encuentra en: http://localhost:8000/api/documentation (por defecto) o si se utilizo docker en : http://localhost:8017/api/documentation 
+
+Para hacer login solo hay que utilizar el `API` de login, sustituir los datos por la información de alguno de los anteriores usuarios, en la respuesta contendra un Token, copiar su información y agregarla donde dice `Authorize`, con esto ya podra acceder a las `Apis` que requieren autorización. Nota algunas `Apis` solo las puede utilizar un usuario con el rol de Administrador
