@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->decimal('total_price', 10, 2);
+            $table->enum('payment_status', ['procesando', 'pagado', 'cancelado'])->default('procesando');
             $table->timestamps();
             $table->softDeletes();
         });
