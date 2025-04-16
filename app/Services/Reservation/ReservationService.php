@@ -4,6 +4,8 @@ namespace App\Services\Reservation;
 
 use App\Http\Resources\Reservation\ReservationCollection;
 use App\Http\Resources\Reservation\ReservationResource;
+use App\Jobs\ProcessPayment;
+use App\Mail\Reservation\ReservationConfirmation;
 use App\Models\Availability;
 use App\Repositories\Eloquent\Media\MediaRepository;
 use App\Repositories\Eloquent\Reservation\ReservationRepository;
@@ -11,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationService
 {
@@ -95,8 +98,10 @@ class ReservationService
             $reservation = $this->reservationRepository->create($data);
             if ($reservation) {
                 DB::commit();
+                Mail::to($user->email)->queue(new ReservationConfirmation($reservation));
+                ProcessPayment::dispatch($reservation)->onQueue('payments')->delay(now()->addSecond(3));
                 return [
-                    'message' => 'Reservacion creado correctamente.',
+                    'message' => 'Reservacion creada. El pago está siendo procesado...',
                     'status' => JsonResponse::HTTP_CREATED
                 ];
             }
