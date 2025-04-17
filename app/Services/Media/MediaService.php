@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class MediaService
 {
@@ -77,7 +78,7 @@ class MediaService
         DB::beginTransaction();
         try {
             $image = $data['image'];
-            $image = $this->saveImage($image, $data['name']);
+            $image = $this->saveImage($image);
             if ($image == null) {
                 throw new \Exception('Error al crear el medio.');
             }
@@ -108,7 +109,7 @@ class MediaService
         try {
             if (isset($data['image'])) {
                 $image = $data['image'];
-                $image = $this->saveImage($image, $data['name']);
+                $image = $this->saveImage($image);
                 if ($image == null) {
                     throw new \Exception('Error al actualizar el medio.');
                 }
@@ -158,11 +159,13 @@ class MediaService
         }
     }
 
-    public function saveImage($image, $name) : string|null
+    public function saveImage($image) : string|null
     {
         try {
+            $uuid = Str::uuid();
+            $uuid = (string) $uuid;
             $extension = $image->getClientOriginalExtension();
-            $imageName = time() . '_' . $name . '.' . $extension;
+            $imageName = $uuid . '.' . $extension;
             $imagePath = $image->storeAs('public/media', $imageName);
             return $imagePath;
         } catch (\Exception $e) {
