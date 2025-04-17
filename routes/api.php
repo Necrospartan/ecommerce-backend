@@ -19,7 +19,7 @@ Route::controller(MediaController::class)->group(function (){
         Route::get('/getMedia', 'index')->name('getMedia')->withoutMiddleware(['auth:sanctum']);
         Route::get('/getMedia/{id}', 'show')->name('getMedia')->withoutMiddleware(['auth:sanctum']);
         Route::post('/addMedia', 'store')->name('addMedia')->middleware('checkRole:Admin');
-        Route::put('/updateMedia/{id}', 'update')->name('updateMedia')->middleware('checkRole:Admin');
+        Route::post('/updateMedia/{id}', 'update')->name('updateMedia')->middleware('checkRole:Admin');
         Route::delete('/deleteMedia/{id}', 'destroy')->name('deleteMedia')->middleware('checkRole:Admin');
         //Image
         Route::get('/getImageMedia/{id}', 'getImageMedia')->name('getImageMedia')->withoutMiddleware(['auth:sanctum']);

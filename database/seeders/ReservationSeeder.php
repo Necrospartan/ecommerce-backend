@@ -33,7 +33,8 @@ class ReservationSeeder extends Seeder
             'media_id' => $media->id,
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2)
+            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2),
+            'payment_status' => fake()->randomElement(['procesando', 'pagado', 'cancelado'])
         ]);
 
         $startDate = '2025-04-20';
@@ -53,7 +54,8 @@ class ReservationSeeder extends Seeder
             'media_id' => $media->id,
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2)
+            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2),
+            'payment_status' => fake()->randomElement(['procesando', 'pagado', 'cancelado'])
         ]);
 //----------------------------------------------------------------------------------------------
         $media = Media::find(2);
@@ -75,7 +77,8 @@ class ReservationSeeder extends Seeder
             'media_id' => $media->id,
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2)
+            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2),
+            'payment_status' => fake()->randomElement(['procesando', 'pagado', 'cancelado'])
         ]);
 
         $startDate = '2025-04-26';
@@ -95,7 +98,8 @@ class ReservationSeeder extends Seeder
             'media_id' => $media->id,
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2)
+            'total_price' => bcmul($media->price_per_day, count($reservedDays), 2),
+            'payment_status' => fake()->randomElement(['procesando', 'pagado', 'cancelado'])
         ]);
     }
 }

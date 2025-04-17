@@ -6,27 +6,19 @@ use App\Http\Requests\Base\BaseFormRequest;
 
 class MediaUpdateRequest extends BaseFormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255',
-            'location' => 'string|max:255',
-            'type' => 'string|max:255',
-            'image' => 'file|mimes:png,jpg|max:2048',
-            'price_per_day' => 'numeric|min:0|max:999999.99'
+            'name' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+            'type' => 'nullable|string|max:255',
+            'image' => 'nullable|file|mimes:png,jpg|max:2048',
+            'price_per_day' => 'nullable|numeric|min:0|max:999999.99'
         ];
     }
 

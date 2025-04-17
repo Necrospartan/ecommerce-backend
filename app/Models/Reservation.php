@@ -20,7 +20,8 @@ class Reservation extends Model
         'media_id',
         'start_date',
         'end_date',
-        'total_price'
+        'total_price',
+        'payment_status'
     ];
 
     protected $casts = [

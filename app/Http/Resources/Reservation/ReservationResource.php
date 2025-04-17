@@ -21,6 +21,7 @@ class ReservationResource extends JsonResource
             'total_price' => $this->total_price,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+            'payment_status' => $this->payment_status,
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d') : null,
             'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d') : null,
             'deleted_at' => $this->deleted_at ? $this->deleted_at->format('Y-m-d') : null,

@@ -9,16 +9,18 @@ use Illuminate\Http\JsonResponse;
 
 class BaseFormRequest extends FormRequest
 {
-    /**
-     * Lista blanca de campos permitidos (sobrescribir en cada FormRequest)
-     */
     protected array $allowlist = [];
 
-    /**
-     * Se ejecuta antes de la validación de reglas
-     */
     protected function prepareForValidation()
     {
+        // Eliminar campos con valor null
+        $input = $this->all();
+        foreach ($input as $key => $value) {
+            if ($value === null) {
+                unset($input[$key]);
+            }
+        }
+        $this->replace($input);
         // Si el request tiene su propia lista blanca personalizada, la usamos
         $allowed = $this->allowlist ?: array_keys($this->rules());
 
@@ -52,9 +54,6 @@ class BaseFormRequest extends FormRequest
         );
     }
 
-    /**
-     * Obtener solo los campos permitidos
-     */
     public function onlyExpectedFields()
     {
         $allowed = $this->allowlist ?: array_keys($this->rules());

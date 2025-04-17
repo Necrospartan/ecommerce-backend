@@ -65,6 +65,12 @@ class ReservationController extends Controller
      *                          example="99.99"
      *                      ),
      *                      @OA\Property(
+     *                          property="payment_status",
+     *                          type="string",
+     *                          example="procesando",
+     *                          enum={"procesando", "completado", "cancelado"}
+     *                      ),
+     *                      @OA\Property(
      *                          property="created_at",
      *                          type="string",
      *                          example="2024-12-12"
@@ -183,6 +189,12 @@ class ReservationController extends Controller
      *                      type="number",
      *                      format="float",
      *                      example="99.99"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="payment_status",
+     *                      type="string",
+     *                      example="procesando",
+     *                      enum={"procesando", "completado", "cancelado"}
      *                  ),
      *                  @OA\Property(
      *                      property="created_at",
@@ -414,6 +426,12 @@ class ReservationController extends Controller
      *                  type="number",
      *                  format="float",
      *                  example="99.99"
+     *              ),
+     *              @OA\Property(
+     *                  property="payment_status",
+     *                  type="string",
+     *                  example="procesando",
+     *                  enum={"procesando", "completado", "cancelado"}
      *              ),
      *          )
      *      ),

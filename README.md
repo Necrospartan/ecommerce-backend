@@ -57,6 +57,12 @@ DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
 
+MAIL_MAILER=
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+
 L5_SWAGGER_CONST_HOST="${APP_URL}:${APP_PORT}"
 L5_SWAGGER_GENERATE_ALWAYS=true
 ```
@@ -68,6 +74,10 @@ L5_SWAGGER_GENERATE_ALWAYS=true
 - `DB_DATABASE`: El nombre de la base de datos que estás utilizando.
 - `DB_USERNAME`: El usuario de la base de datos.
 - `DB_PASSWORD`: La contraseña de la base de datos.
+- `MAIL_HOST`: El servidor SMTP (por ejemplo, smtp.mailtrap.io o el de tu proveedor de correo).
+- `MAIL_PORT`: El puerto SMTP (usualmente 587 o 465).
+- `MAIL_USERNAME`: Usuario para autenticarse en el servidor SMTP.
+- `MAIL_PASSWORD`: Contraseña para autenticarse en el servidor SMTP.
 - `L5_SWAGGER_CONST_HOST`: La URL del Swagger UI, que depende del puerto y la URL de la app.
 - `L5_SWAGGER_GENERATE_ALWAYS`: Establece que siempre se genere la documentación Swagger.
 
@@ -79,7 +89,7 @@ Una vez configuradas las variables, guarda los cambios.
 php artisan key:generate
 ```
 
-# Configuración de la Base de Datos
+## Configuración de la Base de Datos
 
 Para configurar la base de datos, ejecuta los siguientes comandos en tu terminal:
 
@@ -118,6 +128,36 @@ php artisan serve
 ```
 
 Sin embargo, si estás utilizando un contenedor Docker, **no es necesario correr el servidor manualmente**. El contenedor ya está configurado para ejecutar el proyecto automáticamente cuando esté en funcionamiento.
+
+## Inicializar las Queue y los Jobs
+
+Para inicializar las Queue y los Jobs, ejecuta los siguientes comandos en tu terminal:
+
+```bash
+php artisan queue:work --queue=emails,payments
+```
+
+Si el proyecto está corriendo dentro de un contenedor Docker, sigue estos pasos:
+
+1. Obtén el `CONTAINER ID` del contenedor en ejecución usando el siguiente comando:
+
+```bash
+docker ps
+```
+
+2. Accede al contenedor con el comando:
+
+```bash
+docker exec -it {CONTAINER ID} bash
+```
+
+3. Una vez dentro del contenedor, ejecuta los comandos de migración:
+
+```bash
+php artisan queue:work --queue=emails,payments
+```
+
+Con esto, habrás configurado correctamente la base de datos para el proyecto.
 
 ### Usuarios por defecto para utilizar el API:
 
