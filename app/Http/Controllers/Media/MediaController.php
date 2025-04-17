@@ -386,7 +386,7 @@ class MediaController extends Controller
     }
 
     /**
-     * @OA\Put(
+     * @OA\Post(
      *      path="/api/media/updateMedia/{id}",
      *      summary="Actualiza un Medio.",
      *      description="Este endpoint permite actualizar al Medio.",

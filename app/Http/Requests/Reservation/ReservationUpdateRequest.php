@@ -22,10 +22,10 @@ class ReservationUpdateRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'media_id' => 'integer|exists:media,id',
-            'start_date' => 'date|after:today',
-            'end_date' => 'date|after_or_equal:start_date',
-            'total_price' => 'numeric|min:0',
+            'media_id' => 'nullable|integer|exists:media,id',
+            'start_date' => 'nullable|date|after:today',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'total_price' => 'nullable|numeric|min:0',
         ];
     }
 

@@ -121,7 +121,6 @@ class ReservationService
     {
         DB::beginTransaction();
         try {
-            //faltaria agregar la validacion de los datos
             $reservation = $this->reservationRepository->update($id, $data);
             if ($reservation) {
                 DB::commit();
